@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .image-thumbnail {
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+
+<div class = "col-md-9">
+    <h3>Projects: </h3>
+
+    <div class="row">
+        {% for proj in projects %}
+        <div class="card my-2" style="margin:10px">
+            <!--Project-->
+            <div class="card my-2">
+                <h5>{{proj.proj_name}}</h5>
+            </div>
+            <!--Description-->
+            <div class="card-body">
+            {% for spec in specs %}
+            {% if spec.related_proj == proj %}
+                <p>{{spec.spec_name}}</p>
+            {% endif %}
+            {% endfor %}
+            </div>
+            </div>
+    </div>
+        {% empty %}
+        <h3>No projects</h3>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock content %}

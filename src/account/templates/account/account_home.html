@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .image-thumbnail {
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+
+<div class = "col-md-9">
+    <h3>Status:</h3>
+    <div class="card my-2">
+        <p>{{status}}</p>
+    </div>
+    <div class="row">
+        {% for img in images %}
+        <div class="card my-2" style="margin:10px">
+            <!--IMAGE-->
+            <div class="card my-2">
+                <img class="image-thumbnail" src="{{img.image.url}}" alt="Image error">
+            </div>
+            <!--CAPTION-->
+            <div class="card-body">
+                <h5>{{img.caption}}</h5>
+            </div>
+        </div>
+        {% empty %}
+        <h3>Gallery is empty</h3>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .image-thumbnail {
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+
+<div class = "col-md-9">
+    <a class="mt-4 btn btn-primary" href="{% url 'document:specifications_add' project_id=proj_id user_id=request.user.id %}" style="margin-left: 20%">Add Specification</a>
+    <h3>Specifications: </h3>
+    <div class="row">
+        {% for spec in specs %}
+        <div class="card my-2" style="margin:10px">
+            <!--IMAGE-->
+            <div class="card my-2">
+                <h5>{{spec.spec_name}}</h5>
+            </div>
+            <!--CAPTION-->
+            <div class="card-body">
+                <p>{{spec.description}}</p>
+            </div>
+            <div class="card-body">
+                <!--BUTTONS-->
+                <a class="mt-4 btn btn-primary" href="{% url 'document:spec_del' spec_id=spec.spec_id user_id=request.user.id %}" style="margin-left: 20%">Delete</a>
+            </div>
+        </div>
+        {% empty %}
+        <h3>No Specifications</h3>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock content %}
